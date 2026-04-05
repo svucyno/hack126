@@ -1,0 +1,1676 @@
+=== CORE ENGINE ===
+--- Page 1 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 1  |  DripFit Core Engine Documentation
+ DripFit
+ 
+Core Outfit Engine
+ How the system works — from skin tone to final outfit
+ 
+ Six-Step Colour Theory Engine · Explained in Plain Language
+ 
+Step 1
+Skin Tone Palette
+Step 2
+Colour Harmony
+Step 3
+Outfit Builder
+Step 4
+Style Persona
+Step 5
+Balance Check
+Step 6
+Score & Rank
+Total Score
+Colour Harmony
+Skin Tone Match
+Occasion Fit
+100 points
+40 points max
+30 points max
+30 points max
+
+--- Page 2 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 2  |  DripFit Core Engine Documentation
+Table of Contents
+Step 1
+Skin Tone → Colour Palette Mapping
+3
+Step 2
+Colour Harmony Filter
+4
+Step 3
+Combination Builder & Image Anchor
+5
+Step 4
+Style Layer — Persona Classification
+7
+Step 5
+Outfit Balancer — Balance & Formality Gate
+8
+Step 6
+Score & Rank
+9
+Final
+The Complete Engine — How It All Connects
+11
+
+--- Page 3 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 3  |  DripFit Core Engine Documentation
+1
+Skin Tone → Colour Palette Mapping
+Translates the user's skin tone into a personalised colour guide
+What this step does
+Every user selects their skin tone using the Monk Scale — a 7-point scale from very fair (1) to very deep (7). The
+engine immediately translates that number into three lists of colours that will guide every decision in the steps that
+follow:
+Flattering Colours
+Colours scientifically known to complement that skin tone — the engine will actively try to
+include these in the final outfit.
+Neutral Anchors
+Safe, versatile colours (whites, beiges, greys, blacks) that work with any skin tone and help
+balance the outfit visually.
+Colours to Avoid
+Shades that tend to wash out or clash with that specific skin tone — the engine filters these
+out before building any combinations.
+Monk Scale Reference — Skin Tone to Colour Palette
+Mon
+k
+Skin Tone
+Most Flattering Colours
+Safe Neutrals
+Avoid
+1
+Very Fair / Porcelain
+Soft pastels, navy, dusty rose,
+lavender, sage
+Ivory, soft white, light grey
+Neon yellow, harsh
+orange
+2
+Fair
+Jewel tones, teal, burgundy, blush,
+forest green
+Off-white, cream, silver
+Washed-out pastels
+3
+Light-Medium
+Terracotta, olive, coral, mustard,
+rust
+Warm beige, camel, gold
+Cool greys, icy blues
+4
+Medium / Warm
+Beige
+Earthy tones, burnt orange, warm
+brown, cobalt
+Tan, warm white, bronze
+Pastel pink, neon
+5
+Medium-Deep /
+Olive
+Emerald, deep plum, amber, cobalt
+Warm grey, khaki, gold
+Light beige (blends in)
+6
+Deep / Brown
+Royal blue, fuchsia, bright white,
+orange
+Bright white, charcoal,
+black
+Dusty muted tones
+7
+Very Deep / Ebony
+Electric blue, hot pink, white, gold
+Pure white, jet black, gold
+Dark browns
+(disappear)
+Output passed to Step 2: The three colour lists above travel with the user's session through every subsequent step, acting as a
+personalised reference that all harmony and scoring decisions are measured against.
+
+--- Page 4 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 4  |  DripFit Core Engine Documentation
+2
+Colour Harmony Filter
+Removes wardrobe items whose colours clash with the user's skin tone or each other
+What this step does
+Before any outfit can be assembled, every item in the user's wardrobe is tested against two standards — does its
+colour flatter the skin tone, and will it harmonise with other items in an outfit? Items that fail both tests are removed
+from consideration for this session.
+The Three Harmony Rules
+Rule
+What It Means
+Real-World Example
+Complementary Colours
+Colours sitting opposite each other on the
+colour wheel. They create a bold,
+high-contrast look that feels intentional and
+polished.
+A cobalt blue top paired with a burnt orange
+bottom — the contrast makes each colour pop
+more vividly.
+Analogous Colours
+Colours sitting next to each other on the
+colour wheel. They create a calm, cohesive
+look where everything flows together
+naturally.
+An olive green top, mustard yellow bottom, and
+rust-toned accessories — all warm, earthy tones
+that feel curated without trying too hard.
+Neutral Anchor Rule
+Every outfit must include at least one neutral
+— white, black, beige, grey, or camel.
+Neutrals prevent the outfit from becoming
+overwhelming, letting bolder pieces breathe.
+A bold fuchsia top works beautifully with white
+trousers and black shoes. Without that neutral,
+adding a printed bottom would create visual
+chaos.
+How an Item Passes or Fails the Filter
+■ Direct skin match
+The item's colour is in the user's personal flattering palette from Step 1. This is the best
+possible result — the item is proven to suit this skin tone.
+■ Harmonises with skin
+palette
+The item's colour isn't in the palette directly, but it sits in a complementary or analogous
+relationship to a colour that is. It still flatters.
+■ Is a neutral
+White, black, beige, grey, camel — always allowed through because they anchor the outfit
+and complement every skin tone.
+■ No harmony found
+The item's colour doesn't flatter the skin tone, doesn't harmonise with the palette, and isn't a
+neutral. It is removed from this session's wardrobe.
+Why this matters
+Without this filter, the combination builder in Step 3 would assemble thousands of outfits — including ones where a
+mustard-yellow skirt is paired with a lilac top for someone with a warm olive skin tone. This filter ensures every item that
+enters Step 3 has already earned its place.
+
+--- Page 5 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 5  |  DripFit Core Engine Documentation
+3
+Combination Builder
+Assembles every possible outfit from the filtered wardrobe
+What this step does
+Every outfit needs four things — a top, a bottom, shoes, and an accessory. This step takes the filtered wardrobe from
+Step 2 and systematically assembles every valid four-piece combination. If the wardrobe is missing items in any
+category, the engine fills that gap using a curated sample dataset of items already proven to suit the user's skin tone
+and occasion.
+The Four Outfit Slots
+Top
+T-shirt, shirt, blouse, kurta, jacket, sweatshirt
+Bottom
+Jeans, trousers, skirt, shorts, churidar, palazzos
+Shoes
+Sneakers, heels, flats, loafers, juttis, boots
+Accessory
+Watch, bag, belt, scarf, dupatta, jewellery
+Gap Filling — When the Wardrobe Is Incomplete
+How gap filling works
+If the user hasn't uploaded any shoes, for example, the engine doesn't give up. It pulls from a pre-curated sample dataset
+of shoes, filters them to only include options that suit the user's skin tone and match the selected occasion, and uses those
+to complete the outfit. The user sees the gap clearly marked in the output so they know those shoes came from the sample,
+not their wardrobe.
+How Combinations Are Counted
+The engine tries every possible combination of items across all four slots. For example — if the filtered wardrobe has 2
+tops, 2 bottoms, 2 pairs of shoes and 1 accessory, that produces 2 × 2 × 2 × 1 = 8 combinations. Each combination is
+then checked to confirm all four items are tagged for the chosen occasion before passing forward to Step 4.
+The Anchor Feature — Building an Outfit Around an Uploaded Item
+Module 1 allows users to upload a photo of a specific clothing item they want to wear. This item becomes the anchor
+— the outfit is built around it rather than freely assembled. The anchor's slot is locked, and the remaining three slots
+are chosen to complement it specifically.
+1 — Photo is uploaded
+The user uploads a photo of the item they want to build around — for example, a
+green embroidered kurta.
+2 — Colour is extracted
+ColourThief automatically detects the dominant colour in the photo and converts it to
+a precise colour code. No manual input needed.
+3 — Claude Vision analyses the
+item
+The AI examines the photo and identifies: what type of clothing it is (top, bottom,
+shoes, or accessory), its pattern (solid, printed, embroidered), how formal it is on a
+scale of 1–5, and which occasions it suits.
+
+--- Page 6 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 6  |  DripFit Core Engine Documentation
+4 — Anchor is validated
+Before building around it, the engine checks: does this item's colour flatter the user's
+skin tone? Is it suitable for the chosen occasion? If either check fails, the user is
+shown a clear explanation why.
+5 — Outfit is built around the
+anchor
+Only the three remaining slots are filled. Every candidate item for those slots must
+harmonise with the anchor's specific colour and share at least some of its style
+characteristics.
+6 — Real cloth appears on the 2D
+figure
+The clothing item is cut out from its photo background, reshaped to fit the body
+region on the 2D figure, and placed directly on it. The other three slots are shown as
+colour fills — making the anchor piece the clear visual hero of the outfit.
+What the user sees on the 2D figure
+Top slot (anchor)
+Real clothing photo — extracted, warped to body shape, placed directly on the torso region of
+the figure.
+Bottom slot
+A flat colour block in the chosen bottom's dominant colour.
+Shoes slot
+A flat colour block in the chosen shoes' dominant colour.
+Accessory slot
+A flat colour block or colour indicator for the accessory.
+Badge
+A small label reading '✦ TOP from your wardrobe' so the user always knows which item came
+from their upload.
+
+--- Page 7 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 7  |  DripFit Core Engine Documentation
+4
+Style Layer — Persona Classification
+Identifies the style vibe of every assembled outfit combination
+What this step does
+Once all valid combinations have been assembled, each outfit is stamped with a style persona — a label that captures
+the overall aesthetic and character of the look. This helps users understand not just what to wear, but the story the
+outfit tells. It also powers the 'Style Persona' card shown in the output.
+The Six Style Personas
+■ Ethnic Traditional
+Rooted in cultural heritage. Typically includes kurtas, dupattas, churidars, palazzos, and
+juttis. Rich embroidery and block prints. Occasions range from festive gatherings to formal
+ethnic events.
+■ Minimalist
+Clean lines, quiet palette, no unnecessary detail. Solid colours dominate, accessories are
+simple and functional. The look is deliberate — less is genuinely more.
+■ Casual Chic
+Relaxed but intentional. Elevated basics — a well-cut blouse, clean jeans, simple flats. The
+kind of outfit that looks effortless but clearly has thought behind it.
+■ Boho
+Earthy tones, flowing silhouettes, layered textures. Printed and tie-dye patterns, natural
+materials. Has a free-spirited, organic quality.
+■ Streetwear
+Bold, urban, graphic-driven. Hoodies, joggers, statement sneakers, caps. Confidence is the
+primary accessory.
+■ Smart Formal
+Structured and polished. Blazers, tailored trousers, formal shirts, dress shoes.
+Occasion-appropriate and professionally assembled.
+How a Persona Is Decided — The Four Signals
+Item Types (35% weight)
+The most important signal. Which specific clothing types appear in the combo? A
+kurta immediately signals Ethnic Traditional. A hoodie signals Streetwear. The
+engine checks every item against each persona's expected item list.
+Pattern Composition (25% weight)
+What patterns are present across the four items? Solid colours lean Minimalist or
+Smart Formal. Embroidery and block prints lean Ethnic Traditional. Graphics lean
+Streetwear. Tie-dye leans Boho.
+Formality Average (25% weight)
+Each item is scored 1 (very casual) to 5 (very formal). The average across all four
+items is compared against each persona's expected formality range. A Minimalist
+outfit typically averages 2–4, while Streetwear averages 1–2.
+Style Tag Overlap (15% weight)
+When Claude Vision analyses an uploaded photo, it assigns style tags to the item.
+These tags are compared with each persona's expected tags to give the
+classification an extra nudge in the right direction.
+Example classification
+An outfit of embroidered kurta + churidar + juttis + dupatta scores very highly on item types (all four are ethnic-wear
+subtypes), highly on patterns (embroidery is a strong ethnic signal), within the correct formality range (2–4), and matches
+ethnic_traditional style tags. It receives a confidence score of 0.87 and is stamped ■ Ethnic Traditional.
+
+--- Page 8 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 8  |  DripFit Core Engine Documentation
+5
+Outfit Balancer
+Rejects combinations that are visually overwhelming or stylistically inconsistent
+What this step does
+Not every mathematically valid combination makes a good outfit. This step acts as a quality gate, checking two
+specific problems that colour harmony alone cannot catch — outfits that are too visually busy, and outfits where the
+items don't belong in the same world of formality.
+Rule 1 — Visual Weight Check
+Every clothing item carries a visual weight — a measure of how much attention it demands from the eye. A plain white
+shirt demands very little. An embroidered, bright-red printed kurta demands a lot. The rule is simple:
+Maximum 1 bold item per outfit.
+One statement piece is intentional style. Two statement pieces compete for attention. Three is visual noise. Outfits with more than
+one bold item are rejected.
+How visual weight is calculated
+Pattern
+Weight
+Colour Impact
+Total Result
+Solid
+1 — quiet
+Muted/neutral: +0
+Max 1 — quiet
+Striped
+2 — mild
+Moderate saturation: +1
+Max 3 — moderate
+Checked
+2 — mild
+Vivid/saturated: +2
+Max 4 — bold ■
+Printed
+3 — loud
+Max 5 — bold ■
+Embroidered
+3 — loud
+Bold threshold: total ≥ 4
+Bold item confirmed
+Graphic
+3 — loud
+Rule 2 — Formality Gap Check
+Every item in the wardrobe is assigned a formality level from 1 (very casual, like gym shorts) to 5 (very formal, like a
+suit jacket). The engine checks every pair of items in the combination — if any two items are more than one level
+apart, the combination is rejected.
+Level
+Description
+Example Items
+1 — Very Casual
+Gym wear, loungewear
+Shorts, slippers, crop tops
+2 — Casual
+Everyday relaxed wear
+Jeans, t-shirts, sneakers
+3 — Smart Casual
+Elevated everyday
+Chinos, blouses, loafers
+4 — Semi-Formal
+Event-appropriate
+Blazers, trousers, heels
+5 — Formal
+Professional / black tie
+Suits, gowns, formal shoes
+Decision Examples
+Outfit
+Visual Weight
+Formality Gap
+Decision
+
+--- Page 9 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 9  |  DripFit Core Engine Documentation
+Kurta + churidar + juttis + dupatta
+1 bold item (kurta) ✓
+Gap = 1 ✓
+■ Passes
+Graphic tee + printed shorts + cap
+3 bold items ✗
+Gap = 0 ✓
+■ Rejected
+White blouse + black jeans + heels + watch
+0 bold items ✓
+Gap = 2 ✗
+■ Rejected
+Navy shirt + chinos + loafers + belt
+0 bold items ✓
+Gap = 1 ✓
+■ Passes
+
+--- Page 10 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 10  |  DripFit Core Engine Documentation
+6
+Score & Rank
+Every surviving outfit is scored out of 100 — best outfit + 2 alternatives returned
+What this step does
+Every outfit that passed the Balancer's quality gate is now scored out of 100 across three dimensions. The scores are
+combined, all outfits are ranked highest to lowest, and the top three are returned — one best recommendation and two
+alternatives the user can swipe between.
+Colour Harmony
+40 pts
+Tests how well the four items' colours work together as a complete colour
+story. Every pair of items is tested — complementary pairs score highest (10
+pts), analogous pairs score well (7 pts), neutral anchors score reliably (8 pts).
+Weak pairings score only 2 pts. The total is normalised to 40 points.
+Skin Tone Match
+30 pts
+Tests how well each item individually flatters the user's specific skin tone.
+Items closer to the face (top, accessory) are weighted more heavily than
+items further away (bottom, shoes) — because what sits near your face has
+the biggest impact on how a colour reads against your skin. Direct palette
+match = 10 pts, harmony match = 7 pts, neutral = 5 pts.
+Occasion Fit
+30 pts
+Tests whether each item is actually appropriate for the selected occasion.
+Both checks must pass for full points — the item must be tagged for that
+occasion, and its formality level must fall within the expected range for that
+occasion. Failing both checks earns only 1 point out of 8.
+Occasion Formality Reference
+Occasion
+Expected Formality Range
+What It Allows
+Casual
+Levels 1–2
+Very casual and casual items only
+Sport
+Levels 1–2
+Activewear and casual items
+Ethnic & Festive
+Levels 2–4
+Casual through semi-formal ethnic wear
+Party
+Levels 3–4
+Smart casual through semi-formal
+Formal
+Levels 4–5
+Semi-formal and formal only
+Example Scored Output
+■ Best Outfit — Score: 87.5 / 100 | ■ Ethnic Traditional
+Olive Kurta (top, anchor) + Gold Churidar (bottom) + Ivory Juttis (shoes) + Maroon Dupatta (accessory) Colour Harmony:
+34.0 / 40 — Kurta & churidar are complementary, juttis are a neutral anchor, dupatta creates bold contrast with the kurta.
+Skin Tone Match: 27.5 / 30 — Olive and gold are both direct Monk 5 palette matches. Ivory is a safe neutral. Maroon
+harmonises with the palette. Occasion Fit: 26.0 / 30 — All four items are tagged ethnic_festive, and the average formality of
+2.75 falls comfortably within the 2–4 range.
+
+--- Page 11 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 11  |  DripFit Core Engine Documentation
+∞
+The Complete Engine — How It All Connects
+A single call to generate_outfit() runs all six steps in sequence
+How the three modules use the engine
+Module
+Wardrobe Used
+Anchor Item
+Skin Tone
+Occasio
+n
+1 — Outfit Suggester
+User's own uploaded
+wardrobe
+Photo of specific item
+(optional)
+User's Monk Scale
+selection
+User's
+selection
+2 — Style Me
+Curated sample dataset — no
+personal wardrobe needed
+None
+User's Monk Scale
+selection
+User's
+selection
+3 — Fashion Analyser
+Not used
+Full outfit photo
+uploaded by user
+Optional
+Not used
+What the engine receives — Inputs
+Input
+What it is
+Which
+modules
+wardrobe
+The list of clothing items the user has uploaded, each with its colour, type, pattern,
+formality level, and occasion tags.
+Modules 1 & 2
+skin_tone
+A number from 1–7 representing the user's Monk Scale selection. This single
+number unlocks the entire colour palette for that person.
+Modules 1 & 2
+occasion
+The event the user is dressing for: casual, formal, party, sport, or ethnic & festive.
+Modules 1 & 2
+anchor_image
+Optional. A file path to the photo the user uploaded of a specific item they want to
+build the outfit around. When provided, that item's slot is locked and the rest of the
+outfit is built to complement it.
+Module 1 only
+figure_type
+Whether the 2D figure displayed should be female, male, or gender-neutral.
+Modules 1 & 2
+What the engine returns — Outputs
+Output
+What it contains
+Shown in
+Best Outfit
+The highest-scoring combination — includes all four items, the full 100-point
+score breakdown, the style persona, and the balance summary.
+Modules 1 &
+2
+Alternative 1
+The second-ranked combination — same detail as best outfit. User can swipe to
+this.
+Modules 1 &
+2
+Alternative 2
+The third-ranked combination.
+Modules 1 &
+2
+2D Figure
+An interactive SVG figure with the anchor item rendered as a real clothing photo
+and the remaining three slots as colour fills. If no anchor was uploaded, all slots
+are colour fills.
+Modules 1 &
+2
+Compatibility Score
+The full 100-point breakdown split across colour harmony (40), skin tone match
+(30), and occasion fit (30).
+Modules 1 &
+2
+Style Persona
+The persona label, emoji, description, and confidence score for the best outfit.
+Modules 1 &
+2
+
+--- Page 12 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 12  |  DripFit Core Engine Documentation
+Balance Summary
+Which item is the statement piece, what the average formality is, and
+confirmation that the outfit passed both balance rules.
+Modules 1 &
+2
+Engine Statistics
+How many combinations were built, how many survived the Balancer, and the
+rejection rate. Used internally for debugging and quality control.
+Internal only
+
+--- Page 13 ---
+DripFit
+AI-Powered Outfit Suggestion Engine
+Page 13  |  DripFit Core Engine Documentation
+End-to-End Pipeline Summary
+Step
+Name
+What Goes In
+What Comes Out
+What Gets Cut
+1
+Skin Tone Palette
+User's Monk Scale number
+(1–7)
+Three colour lists: flattering, neutral
+anchors, avoid
+Nothing — maps only
+2
+Colour Harmony Filter
+Full wardrobe + colour lists
+from Step 1
+Filtered wardrobe — only items
+that suit the skin tone
+Items whose colour
+clashes with the skin
+tone or has no harmony
+3
+Combination Builder
+Filtered wardrobe +
+occasion + anchor item (if
+uploaded)
+Every valid 4-piece combination
+(top + bottom + shoes + accessory)
+Combinations missing a
+slot or tagged for the
+wrong occasion
+4
+Style Layer
+All valid combinations
+Same combinations, each labelled
+with a style persona and
+confidence score
+Nothing — classifies
+only
+5
+Outfit Balancer
+Persona-stamped
+combinations
+Balanced combinations that pass
+both quality rules
+Outfits with more than 1
+bold item, or formality
+gap greater than 1
+6
+Score & Rank
+Balanced combinations +
+skin palette + occasion
+Top 3 outfits scored out of 100,
+with full breakdown
+Nothing — ranks only
+Rend
+er
+2D Figure
+Best outfit + anchor photo
+(if uploaded)
+SVG figure — real cloth on anchor
+slot, colour fills for the rest
+Nothing — renders only
+End-to-End Data Flow
+Image + Skin
+Tone +
+Occasion
+Step 1
+Colour
+Palette
+Step 2
+Harmony
+Filter
+Step 3
+Combo
+Builder
+Step 4 Style
+Layer
+Step 5
+Balancer
+Step 6 Score
+& Rank
+2D Figure +
+Output
+ DripFit Core Engine — All rights reserved. Built for the DripFit AI-Powered Outfit Suggestion Platform.
+ 
+
+=== PRD ===
+--- Page 1 ---
+DripFit
+Product Requirements Document  v1.0
+Page 1  |  DripFit PRD — Confidential
+ DripFit
+ 
+Product Requirements
+Document
+ 
+ AI-Powered Outfit Suggestion Platform
+ 
+ Version 1.0 | April 2026 | Confidential
+ 
+ B2C Subscription Product · Django + React · Claude Vision API
+ 
+Status
+Version
+Author
+Last Updated
+Classification
+In Development
+1.0
+DripFit Team
+April 2026
+Confidential
+
+--- Page 2 ---
+DripFit
+Product Requirements Document  v1.0
+Page 2  |  DripFit PRD — Confidential
+Table of Contents
+1
+Executive Summary
+3
+2
+Problem Statement
+3
+3
+Product Vision & Goals
+4
+4
+Target Users & Personas
+4
+5
+Scope — In & Out
+5
+6
+Functional Requirements
+6
+7
+Three Core Modules
+7
+8
+Non-Functional Requirements
+9
+9
+Tech Stack
+10
+10
+Business Model & Monetisation
+11
+11
+User Flows
+12
+12
+Release Milestones
+13
+13
+Success Metrics & KPIs
+14
+14
+Risks & Mitigations
+15
+15
+Open Questions & Decisions
+15
+
+--- Page 3 ---
+DripFit
+Product Requirements Document  v1.0
+Page 3  |  DripFit PRD — Confidential
+1
+Executive Summary
+DripFit is an AI-powered outfit suggestion platform that helps individuals build complete, colour-harmonious outfits
+tailored to their personal wardrobe, skin tone, and occasion. The product solves a universal daily frustration —
+standing in front of a full wardrobe and not knowing what to wear — through a combination of scientific colour theory
+and AI-powered image analysis.
+Unlike existing platforms such as Myntra, Stitch Fix, and ASOS — which focus almost exclusively on selling new items
+— DripFit helps users make the most of what they already own. The result is a product with strong differentiation, low
+churn risk, and a clear path to a B2C subscription revenue model.
+Product Type
+B2C Web Application (Mobile-Responsive)
+Core Technology
+Django backend + React frontend + Claude Vision API
+Business Model
+Freemium — Free tier with 3 saved looks / Premium subscription
+Target Market
+Fashion-conscious individuals aged 18–40 who want to style smarter
+MVP Scope
+Three modules: Outfit Suggester, Style Me, Fashion Analyser
+Key Differentiator
+Skin-tone aware colour engine + styles existing wardrobe — not sell new
+clothes
+
+--- Page 4 ---
+DripFit
+Product Requirements Document  v1.0
+Page 4  |  DripFit PRD — Confidential
+2
+Problem Statement
+Despite owning full wardrobes, most people struggle daily with the question of what to wear. This is not a trivial
+inconvenience — it causes measurable decision fatigue, leads to underused clothing, and results in low confidence
+about personal style. Three underlying causes drive this problem:
+Lack of colour theory
+knowledge
+Most people do not know which colours complement their specific skin tone, which
+colour combinations are harmonious, or what the rules of visual balance actually
+are. This knowledge gap makes outfit building feel like guesswork.
+No occasion-aware guidance
+Even people who understand basic colour matching often struggle to adapt their
+wardrobe to specific occasions — distinguishing what is appropriately casual vs
+smart casual vs formal is non-obvious without training.
+Existing tools focus on selling,
+not styling
+Platforms like Myntra, Stitch Fix, and ASOS are fundamentally discovery and
+purchase tools. They are commercially incentivised to show users new items to
+buy, not to maximise the value of what the user already owns. No mainstream tool
+fills this gap.
+The Market Gap
+No widely accessible tool combines a user's existing wardrobe with skin-tone analysis and colour-harmony rules to deliver
+complete, occasion-appropriate outfit suggestions. DripFit fills this gap with a scientifically grounded, AI-augmented
+solution.
+3
+Product Vision & Goals
+Vision: To become the go-to personal styling companion for anyone who wants to dress with intention — not by
+buying more, but by understanding what they already have.
+Goal
+Description
+Priority
+Style existing wardrobes
+Deliver complete, wearable outfit recommendations built from items the
+user already owns.
+Must Have
+Skin-tone awareness
+Every recommendation accounts for the user's specific Monk Scale skin
+tone, ensuring colours genuinely flatter rather than generically match.
+Must Have
+Occasion
+appropriateness
+Outfits are filtered and ranked against the selected occasion — casual,
+formal, party, sport, or ethnic & festive.
+Must Have
+Explainability
+Every outfit comes with a score breakdown, colour card, and style
+persona so users understand why the outfit works — building colour
+knowledge over time.
+Must Have
+Visual outfit
+presentation
+Outfits are shown on an interactive 2D figure with the user's actual
+clothing items rendered on the correct body regions.
+Must Have
+Freemium growth path
+A compelling free tier that drives word-of-mouth and a premium tier with
+unlimited features that converts engaged users.
+Should Have
+
+--- Page 5 ---
+DripFit
+Product Requirements Document  v1.0
+Page 5  |  DripFit PRD — Confidential
+Cultural inclusivity
+Full support for ethnic and festive wear categories including kurtas,
+churidars, dupattas, juttis, and ethnic palettes.
+Must Have
+
+--- Page 6 ---
+DripFit
+Product Requirements Document  v1.0
+Page 6  |  DripFit PRD — Confidential
+4
+Target Users & Personas
+The Wardrobe
+Overwhelmed
+Age 22–35
+Who they are
+Has a full wardrobe but defaults to the same 10 outfits every week. Knows they could
+dress better but doesn't know how. Frustrated by decision fatigue every morning.
+What they need
+Needs a fast, confident recommendation with clear reasoning. Wants to feel stylish without
+spending hours deciding.
+The Occasion Dresser
+Age 25–40
+Who they are
+Dresses well for everyday wear but panics when a specific event comes up — a wedding,
+office party, or festive occasion. Unsure how to adapt existing wardrobe to the occasion.
+What they need
+Needs occasion-specific filtering with formality guidance. Wants reassurance that the outfit
+is appropriate.
+The Skin-Tone
+Conscious
+Age 18–40
+Who they are
+Has noticed that some colours look great on them and others wash them out but cannot
+articulate why or what the rules are. Wants personalised, flattering recommendations.
+What they need
+Needs skin-tone-aware colour guidance backed by real logic. Wants to understand the
+why, not just the what.
+The Ethnic Wear
+Enthusiast
+Age 20–45 — South Asian diaspora and local users
+Who they are
+Has a significant collection of ethnic and festive wear — kurtas, sarees, dupattas — but
+struggles to build complete, modern looks from them. Mainstream style apps ignore this
+category entirely.
+What they need
+Needs a platform that treats ethnic wear as a first-class category with culturally aware
+palettes and combination rules.
+
+--- Page 7 ---
+DripFit
+Product Requirements Document  v1.0
+Page 7  |  DripFit PRD — Confidential
+5
+Scope — What Is and Is Not in This Product
+In Scope — MVP
+Outfit Suggester (Module 1)
+Upload wardrobe items, select skin tone and occasion, receive best outfit + 2
+alternatives with full score breakdown and 2D figure display.
+Style Me (Module 2)
+No wardrobe needed — select skin tone and occasion only; suggestions drawn
+from curated sample dataset.
+Fashion Analyser (Module 3)
+Upload a full outfit photo; Claude Vision API returns a letter grade (A–D), what
+works well, and 3 specific improvement tips.
+Anchor Feature
+Upload a specific clothing item to build the outfit around. Real cloth is extracted and
+displayed on the 2D figure.
+2D Figure Display
+Interactive SVG figure (female, male, gender-neutral) with outfit colours and real
+cloth rendered on correct body regions.
+Skin-Tone Engine
+Monk Scale 1–7 selector with scientifically grounded colour palettes per tone.
+Optional photo-based skin tone detection.
+Ethnic Wear Support
+Kurta, churidar, palazzos, dupatta, juttis and ethnic palettes fully supported across
+all modules.
+Save as Look
+Save outfit + score + persona + personal note + date. Free tier: 3 saves. Premium:
+unlimited.
+Google OAuth Authentication
+Single sign-on via Google. Subscription tier logic built on top of auth.
+Freemium Tier Logic
+Free and Premium tiers fully designed in UI. Payment gateway Razorpay designed
+but not wired in MVP.
+Out of Scope — MVP
+E-commerce / Shopping
+DripFit does not sell or recommend new products to purchase. No affiliate links.
+Payment Processing
+Razorpay integration designed but not implemented — subscription logic is UI-only
+in v1.
+Social / Sharing
+No sharing outfits to social media or between users in MVP.
+Body Measurement Fitting
+No 3D body modelling or garment fit prediction in MVP.
+Native Mobile App
+Web-responsive only. iOS and Android apps are post-MVP.
+Multi-language Support
+English only in MVP.
+Trend Analysis
+No real-time trend data or seasonal recommendations in MVP.
+
+--- Page 8 ---
+DripFit
+Product Requirements Document  v1.0
+Page 8  |  DripFit PRD — Confidential
+6
+Functional Requirements
+Wardrobe Management
+Req ID
+Priority
+Requirement
+REQ-W01
+Must Have
+User can upload clothing item photos from device or camera.
+REQ-W02
+Must Have
+System auto-detects dominant colour from uploaded photo using ColourThief.
+REQ-W03
+Must Have
+Claude Vision API identifies item type, subtype, pattern, formality level, and occasion
+tags.
+REQ-W04
+Must Have
+User can view all uploaded wardrobe items in a grid layout.
+REQ-W05
+Must Have
+User can delete individual wardrobe items.
+REQ-W06
+Must Have
+Free tier limited to 10 wardrobe items. Premium tier is unlimited.
+REQ-W07
+Should Have
+User can manually edit the metadata Claude Vision assigns to an item.
+Skin Tone & Occasion Selection
+Req ID
+Priority
+Requirement
+REQ-S01
+Must Have
+User can select skin tone using 7-swatch Monk Scale colour selector.
+REQ-S02
+Should Have
+User can optionally upload a face photo for automatic skin tone detection.
+REQ-S03
+Must Have
+User can select one occasion per session: casual, formal, party, sport, ethnic &
+festive.
+REQ-S04
+Must Have
+Skin tone and occasion selections are retained for the session.
+Outfit Engine
+Req ID
+Priority
+Requirement
+REQ-E01
+Must Have
+Engine runs all 6 steps: Skin Tone Palette, Colour Harmony Filter, Combination
+Builder, Style Layer, Outfit Balancer, Score & Rank.
+REQ-E02
+Must Have
+Engine returns best outfit plus 2 ranked alternatives.
+REQ-E03
+Must Have
+Engine fills missing wardrobe slots using curated sample dataset.
+REQ-E04
+Must Have
+Anchor feature locks a specific uploaded item and builds outfit around it.
+REQ-E05
+Must Have
+All outfit recommendations include: score breakdown, colour card, style persona,
+balance summary.
+2D Figure Display
+Req ID
+Priority
+Requirement
+REQ-F01
+Must Have
+2D figure displays in female, male, or gender-neutral variant based on user
+preference.
+REQ-F02
+Must Have
+Outfit slots filled with dominant hex colour fills for non-anchor items.
+
+--- Page 9 ---
+DripFit
+Product Requirements Document  v1.0
+Page 9  |  DripFit PRD — Confidential
+REQ-F03
+Must Have
+Anchor item extracted from photo background and placed on corresponding body
+region of figure.
+REQ-F04
+Should Have
+User can swipe or click to switch between best outfit and alternatives on the figure.
+Saved Looks
+Req ID
+Priority
+Requirement
+REQ-L01
+Must Have
+User can save any generated outfit as a Look with optional personal note.
+REQ-L02
+Must Have
+Saved look stores: outfit items, score, persona, note, date, and occasion tag.
+REQ-L03
+Must Have
+Free tier maximum 3 saved looks. Premium is unlimited.
+REQ-L04
+Should Have
+User can view all saved looks in a gallery, sorted by date.
+REQ-L05
+Should Have
+User can delete saved looks.
+Fashion Analyser
+Req ID
+Priority
+Requirement
+REQ-A01
+Must Have
+User can upload a full outfit photo for AI analysis.
+REQ-A02
+Must Have
+Claude Vision API returns: letter grade (A/B/C/D), what works well, 3 specific
+improvement tips.
+REQ-A03
+Must Have
+Free tier has limited Fashion Analyser uses. Premium has unlimited uses.
+Authentication
+Req ID
+Priority
+Requirement
+REQ-AUTH0
+1
+Must Have
+User can sign in via Google OAuth.
+REQ-AUTH0
+2
+Must Have
+Session is maintained across page refreshes.
+REQ-AUTH0
+3
+Must Have
+Subscription tier (free/premium) is stored against user profile and enforced across all
+modules.
+
+--- Page 10 ---
+DripFit
+Product Requirements Document  v1.0
+Page 10  |  DripFit PRD — Confidential
+7
+Three Core Modules — Detailed Behaviour
+Module 1 — Outfit
+Suggester
+Build a complete outfit from your own wardrobe
+The primary module. The user uploads their wardrobe items, selects their skin tone and the occasion they are
+dressing for, and receives a fully scored, explained outfit recommendation built exclusively from what they own — or
+supplemented by the sample dataset where their wardrobe has gaps.
+Step
+What Happens
+1. Sign in
+User authenticates via Google OAuth. Subscription tier is loaded.
+2. Build wardrobe
+User uploads clothing item photos. ColourThief extracts colour. Claude Vision identifies
+metadata. Items stored in database.
+3. Select skin tone
+User picks Monk Scale 1–7 from swatch selector, or optionally uploads a photo for
+auto-detection.
+4. Select occasion
+User picks one occasion from: casual, formal, party, sport, ethnic & festive.
+5. Optional anchor
+upload
+User uploads a photo of one specific item to build the outfit around. That item's slot is locked.
+6. Engine runs
+All six engine steps execute: palette → harmony filter → combo builder → style layer →
+balancer → score & rank.
+7. View results
+Best outfit + 2 alternatives displayed on 2D figure. Score card, colour card, persona, and
+balance summary shown.
+8. Save look
+User can save the outfit with a personal note. Limited to 3 on free tier.
+Outputs: Best outfit on 2D figure · 100-point score breakdown · Colour harmony card · Style persona + rationale · Balance summary ·
+2 swipeable alternatives
+Module 2 — Style Me
+Get outfit ideas without uploading a wardrobe
+A lighter entry point for new users or anyone who wants style inspiration without the commitment of uploading their
+wardrobe. The user provides only their skin tone and occasion — the engine draws entirely from the curated sample
+dataset to build outfit suggestions. All output cards are identical to Module 1.
+Step
+What Happens
+1. Select skin tone
+User picks Monk Scale 1–7 from swatch selector.
+2. Select occasion
+User picks occasion from the full list.
+3. Engine runs
+Same 6-step engine runs on sample dataset instead of personal wardrobe.
+4. View results
+Best outfit + 2 alternatives shown on 2D figure with full output cards.
+5. Save look
+User can save looks. Limited to 3 on free tier.
+Outputs: Best outfit on 2D figure (sample items) · 100-point score breakdown · Colour card · Style persona · 2 alternatives
+
+--- Page 11 ---
+DripFit
+Product Requirements Document  v1.0
+Page 11  |  DripFit PRD — Confidential
+Module 3 — Fashion
+Analyser
+Get an honest AI critique of any outfit you are wearing
+A standalone analytical tool. The user uploads a photo of a full outfit they are wearing or considering wearing. Claude
+Vision API analyses the image and returns a structured critique — a letter grade, what is working well in the outfit, and
+three specific, actionable improvement tips. This module does not require a wardrobe or skin tone input.
+Step
+What Happens
+1. Upload outfit photo
+User uploads a full-body or torso-up photo of an outfit.
+2. Claude Vision
+analyses
+Claude Vision API receives the image and evaluates: colour harmony, visual balance,
+formality consistency, and occasion suitability.
+3. Results returned
+Letter grade A–D, what works well, and 3 improvement tips are displayed.
+Outputs: Letter grade (A / B / C / D) · Positive aspects of the outfit · 3 specific, actionable improvement tips
+
+--- Page 12 ---
+DripFit
+Product Requirements Document  v1.0
+Page 12  |  DripFit PRD — Confidential
+8
+Non-Functional Requirements
+Category
+Requirement
+Target
+Performance
+Time from form submission to outfit displayed on
+screen
+Under 4 seconds (excluding Claude
+Vision API call)
+Performance
+Claude Vision API response time for item metadata
+Under 6 seconds per image
+Performance
+Fashion Analyser critique response time
+Under 8 seconds
+Scalability
+Concurrent users supported at launch
+500 concurrent users without degradation
+Reliability
+System uptime target
+99.5% monthly uptime (excluding
+scheduled maintenance)
+Security
+User authentication
+Google OAuth 2.0 only — no passwords
+stored
+Security
+Uploaded images
+Stored in private cloud storage, not
+publicly accessible
+Privacy
+Wardrobe data
+Visible to the authenticated user only.
+Never shared or sold.
+Accessibility
+WCAG compliance
+WCAG 2.1 AA — colour contrast,
+keyboard navigation, screen reader
+labels
+Responsiveness
+Device support
+Fully functional on mobile (375px+),
+tablet, and desktop
+Browser support
+Minimum browser versions
+Chrome 100+, Safari 15+, Firefox 100+,
+Edge 100+
+Data retention
+Wardrobe items and saved looks
+Retained for active accounts. Deleted
+within 30 days of account closure.
+
+--- Page 13 ---
+DripFit
+Product Requirements Document  v1.0
+Page 13  |  DripFit PRD — Confidential
+9
+Technology Stack
+Layer
+Technology
+Purpose
+Notes
+Frontend Framework
+React 18 + Vite
+All three module UIs, routing, state
+management
+Replaced
+HTML/CSS/Vanilla JS
+Frontend Styling
+Tailwind CSS or CSS
+Modules
+Component-level styling, responsive
+layout
+Decision TBD in
+Phase 1
+State Management
+React Context +
+useState
+Wardrobe, auth, outfit results,
+subscription tier
+No Redux — Context
+sufficient for MVP
+Routing
+React Router v6
+Client-side routing between modules
+2D Figure
+React SVG Component
+Interactive figure with dynamic slot
+fills
+Replaces static HTML
+SVG
+Backend Framework
+Python + Django 4.x
+API views, ORM, authentication, file
+handling
+Django REST
+Framework for JSON
+responses
+Authentication
+Google OAuth
+(django-allauth)
+User login and session management
+No password storage
+API Communication
+Axios or Fetch API
+React frontend communicates with
+Django via REST
+CORS enabled for
+dev + prod
+Colour Detection
+ColourThief (Python)
+Extract dominant hex from uploaded
+clothing images
+Runs server-side on
+upload
+Image Analysis
+Claude Vision API
+Skin tone detect, item metadata, outfit
+grading
+claude-sonnet-4-2025
+0514
+Image Processing
+rembg + Pillow +
+OpenCV
+Background removal, warp,
+composite for 2D figure
+Anchor feature
+Colour Engine
+Pure Python (rule-based)
+Complementary, analogous,
+neutral-anchor rules
+No ML —
+deterministic &
+explainable
+Database (Dev)
+SQLite
+Local development
+Database (Prod)
+PostgreSQL
+Production — user, wardrobe, saves,
+subscriptions
+Hosted on
+Render/Railway
+Cloud Storage
+AWS S3 or Cloudinary
+Uploaded clothing images and
+processed cutouts
+Deployment
+Render or Railway
+Backend + database hosting
+Frontend Hosting
+Vercel or Netlify
+React app hosting with CDN
+Payment Gateway
+Razorpay (designed, not
+wired)
+Premium subscription payments
+Post-MVP
+implementation
+
+--- Page 14 ---
+DripFit
+Product Requirements Document  v1.0
+Page 14  |  DripFit PRD — Confidential
+10
+Business Model & Monetisation
+Freemium Tier Comparison
+Feature
+Free Tier
+Premium Tier
+Wardrobe items
+Up to 10 items
+Unlimited
+Saved Looks
+Up to 3 looks
+Unlimited
+Outfit Suggestions
+Basic recommendations
+Advanced colour + skin analysis
+Style Me module
+Available
+Available
+Fashion Analyser
+3 uses per month
+Unlimited uses
+Skin tone detection
+Manual swatch only
+Photo detection available
+Figure type choice
+Female only
+Female, male, gender-neutral
+Priority support
+No
+Yes
+Ad-free experience
+Yes
+Yes
+Revenue Strategy
+Phase 1 — Free Growth
+Launch free tier to build user base and validate product-market fit. Word-of-mouth driven
+by novel 2D figure and real cloth anchor feature.
+Phase 2 — Premium
+Conversion
+Activate Razorpay payment gateway. Target 5–8% free-to-premium conversion. Premium
+positioned as 'your personal stylist, always on'. Monthly and annual pricing options.
+Phase 3 — B2B / API
+License the colour engine and skin-tone API to fashion retailers, style consultancy apps,
+and personal shopping services.
+Phase 4 — Affiliate
+Optional: affiliate links for sample dataset items only, clearly disclosed. Never influences
+outfit recommendations — commercial integrity protected.
+
+--- Page 15 ---
+DripFit
+Product Requirements Document  v1.0
+Page 15  |  DripFit PRD — Confidential
+11
+Key User Flows
+First-Time User — Module 1 Complete Flow
+Step
+User Action / System Response
+1. Land on DripFit
+homepage
+User arrives via search, social, or direct link.
+2. Sign in with Google
+One-click Google OAuth. Account created automatically.
+3. Upload wardrobe items
+User uploads 3–10 clothing photos. Each is auto-analysed and stored.
+4. Select skin tone
+User taps Monk Scale swatch that matches their skin.
+5. Select occasion
+User selects 'Ethnic & Festive' for an upcoming wedding.
+6. Optional: anchor upload
+User uploads photo of a kurta they definitely want to wear.
+7. Tap 'Find My Outfit'
+Engine runs all 6 steps. Outfit rendered on 2D figure.
+8. View outfit + score
+Score 84/100 shown. Colour card explains why. Persona: Ethnic Traditional.
+9. Swipe alternatives
+User swipes to Alternative 1 — different dupatta colour, score 79.
+10. Save look
+User saves best outfit with note 'Wedding outfit March 2026'.
+Returning User — Quick Style Check
+Step
+User Action / System Response
+1. Open DripFit
+User is already logged in. Wardrobe is pre-loaded.
+2. Switch to Style Me
+User wants inspiration without thinking. Taps Style Me.
+3. Select skin + occasion
+Monk 4 + Casual selected.
+4. View suggestions
+Sample-based outfit displayed. User saves Alternative 2.
+Fashion Analyser Flow
+Step
+User Action / System Response
+1. Navigate to Fashion
+Analyser
+User tabs to Module 3.
+2. Upload outfit photo
+User uploads a mirror selfie in a full outfit.
+3. Receive AI critique
+Grade: B+. Works well: colour harmony and neutral anchor. Tips: 1) Add one
+accessory near face. 2) Switch to a darker bottom. 3) Tuck in the shirt for formality.
+4. Act on tips
+User returns to Module 1 to explore a revised outfit.
+
+--- Page 16 ---
+DripFit
+Product Requirements Document  v1.0
+Page 16  |  DripFit PRD — Confidential
+12
+Release Milestones
+Phase
+Milestone
+Key Deliverables
+Target
+Phase 1
+Foundation
+Core Engine + Backend
+API
+6-step colour engine, Django REST API, Google OAuth,
+ColourThief integration, SQLite database
+Week 1–3
+Phase 2 React
+Frontend
+React App + Module 1
+Vite + React setup, SkinToneSelector, OccasionSelector,
+WardrobeUploader, WardrobeGrid, CORS wiring
+Week 4–6
+Phase 3 2D
+Figure
+Figure + Anchor Feature
+FigureSVG component, slot rendering, rembg
+integration, anchor overlay, colour fill for non-anchor
+slots
+Week 7–8
+Phase 4 Output
+UI
+Outfit Cards + Score
+Display
+OutfitCard, AlternativesSwitcher, ScoreBreakdown,
+ColourCard, PersonaBadge, BalanceSummary
+Week
+9–10
+Phase 5 All
+Modules
+Module 2 + Module 3 +
+Saved Looks
+StyleMe page, FashionAnalyser page, SaveLookButton,
+SavedLooks gallery, tier enforcement UI
+Week
+11–12
+Phase 6 Polish +
+Deploy
+Production Deployment
+PostgreSQL migration, Render/Railway deployment,
+Vercel frontend, S3 image storage, performance testing
+Week
+13–14
+Phase 7
+Monetisation
+Premium Tier
+Razorpay payment integration, subscription
+management, tier gating enforcement
+Post-MVP
+
+--- Page 17 ---
+DripFit
+Product Requirements Document  v1.0
+Page 17  |  DripFit PRD — Confidential
+13
+Success Metrics & KPIs
+Acquisition
+Metric
+Target
+Monthly Active Users (MAU)
+500 in Month 1 → 2,000 by Month 3
+Sign-up conversion rate
+Target 25% of visitors complete Google OAuth
+Wardrobe upload rate
+Target 70% of signed-up users upload at least 3 items
+Engagement
+Metric
+Target
+Outfits generated per user/week
+Target 3+ per active user
+Looks saved per user
+Target 2+ saved looks within first 7 days
+Module 3 (Analyser) usage
+Target 40% of users try Fashion Analyser within 2 weeks
+Session duration
+Target 4+ minutes average
+Return rate
+Target 50% of users return within 7 days of first session
+Product Quality
+Metric
+Target
+Engine output satisfaction
+Target 4.0+ / 5.0 rating on outfit recommendations (in-app
+survey)
+Average compatibility score
+Target 70+ average score across generated outfits
+(indicates good wardrobe coverage)
+Outfit generation time
+Target under 4 seconds for 95th percentile of requests
+Monetisation
+Metric
+Target
+Free to Premium conversion
+Target 5% within 60 days of launch
+Monthly Recurring Revenue (MRR)
+Target Rs. 50,000 MRR by Month 6
+Churn rate
+Target below 5% monthly churn on Premium
+
+--- Page 18 ---
+DripFit
+Product Requirements Document  v1.0
+Page 18  |  DripFit PRD — Confidential
+14
+Risks & Mitigations
+Risk
+Likelihood
+Impact
+Mitigation
+Claude Vision API latency makes
+outfit generation feel slow
+Medium
+High
+Show progressive loading states. Cache item
+metadata after first analysis — Claude Vision only
+runs once per item upload, not per outfit
+generation.
+Users with small wardrobes get poor
+outfit variety
+High
+Medium
+Sample dataset fills gaps automatically. Engine
+clearly indicates which items came from sample vs
+wardrobe. Prompt users to add more items after
+first result.
+Colour harmony rules feel too rigid for
+users with unconventional taste
+Medium
+Medium
+Provide a 'Wildcard' mode toggle post-MVP that
+relaxes harmony rules for experimental users.
+Monk Scale selection is unfamiliar to
+many users
+High
+Medium
+Provide clear visual swatches with real skin tone
+photographs next to each scale. Offer the photo
+detection alternative.
+Background removal (rembg) fails on
+complex clothing textures
+Medium
+Medium
+Fallback to colour fill rendering if rembg confidence
+is below threshold. User never sees an error —
+figure simply uses colour fill for that slot.
+Free tier limits (10 items, 3 saves)
+cause frustration and churn
+Medium
+High
+Design free tier limits with clear upsell messaging.
+Ensure free tier provides genuine value — 10
+items is enough for 3–4 meaningful outfit sessions.
+Ethnic wear colour rules may not
+cover all regional variations
+Medium
+Medium
+Build ethnic palette as an extensible dataset.
+Gather user feedback from ethnic wear sessions
+and iterate the palette in v1.1.
+15
+Open Questions & Decisions Needed
+Question
+Context
+Owner
+Tailwind CSS or CSS Modules for
+React styling?
+Tailwind is faster to build with; CSS Modules are more controlled.
+Decision affects component structure and design token approach.
+Fronte
+nd
+Lead
+Render or Railway for production
+hosting?
+Both support Django + PostgreSQL. Railway has simpler DX;
+Render has more control. Cost comparison needed at expected
+scale.
+DevOp
+s / Fou
+nder
+AWS S3 or Cloudinary for image
+storage?
+Cloudinary offers built-in transformations useful for rembg fallback.
+S3 is cheaper at scale. Depends on image processing strategy.
+Backen
+d Lead
+Premium pricing — monthly vs
+annual only vs both?
+Annual plans improve MRR predictability. Monthly plans reduce
+barrier to convert. Both options increases complexity of Razorpay
+integration.
+Founde
+r
+
+--- Page 19 ---
+DripFit
+Product Requirements Document  v1.0
+Page 19  |  DripFit PRD — Confidential
+Should Module 2 (Style Me) be
+available without sign-in?
+Removing auth from Style Me could drive higher top-of-funnel
+engagement but complicates tier enforcement.
+Produc
+t / Foun
+der
+How many items should the
+curated sample dataset contain at
+launch?
+A larger sample dataset means better gap-filling and more Style Me
+variety. But it requires more curation work before launch. Minimum
+viable count TBD.
+Conten
+t / Back
+end
+Should the Monk Scale photo
+detection use Claude Vision or a
+dedicated ML model?
+Claude Vision is fast to implement but adds API cost per detection.
+A dedicated skin tone ML model could be more accurate and
+cheaper at scale.
+ML / Ba
+ckend
+ DripFit Product Requirements Document v1.0 — April 2026 — Confidential | All rights reserved.
+ 
